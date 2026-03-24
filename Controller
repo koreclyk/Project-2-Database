@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class Controller {
+   public static void main(String[] args) {
+      Scanner input = new Scanner(System.in);
+      Table orderTable = new Table("OrderDetails");
+      boolean running = true;
+
+      orderTable.addRow(new Row(10000, 17, 27.0, 4, 0.0));
+      orderTable.addRow(new Row(10001, 25, 9.8  , 30, 0.15));
+      orderTable.addRow(new Row(10001, 40, 12.8, 40,0.0));
+      orderTable.addRow(new Row(10001, 59, 38.5, 8, 0.0));
+
+      while (running) {
+         System.out.println("\n--- Database Menu ---");
+         System.out.println("1. View Table");
+         System.out.println("2. Add Row");
+         System.out.println("3. Delete Row");
+         System.out.println("4. Update Price");
+         System.out.println("5. Update Quantity");
+         System.out.println("6. Exit");
+         System.out.print("Selection: ");
+
+         int choice = input.nextInt();
+
+         if (choice == 1) {
+    orderTable.printTable();
+} else if (choice == 2) {
+    System.out.print("Enter OrderID, ProductID, Price, Qty, Discount: ");
+    orderTable.addRow(new Row(input.nextInt(), input.nextInt(), input.nextDouble(), input.nextInt(), input.nextDouble()));
+} else if (choice == 3) {
+    System.out.print("Enter OrderID to delete: ");
+    System.out.println("Deleted: " + orderTable.deleteRow(input.nextInt()));
+} else if (choice == 4) {
+    System.out.print("Enter OrderID and New Price: ");
+    System.out.println("Updated: " + orderTable.updatePrice(input.nextInt(), input.nextDouble()));
+} else if (choice == 5) {
+    System.out.print("Enter OrderID and Quantity Adjustment: ");
+    System.out.println("Updated: " + orderTable.updateQuantity(input.nextInt(), input.nextInt()));
+} else if (choice == 6) {
+    running = false;
+} else {
+    System.out.println("Invalid option.");
+}
+      }
+   }
+}
