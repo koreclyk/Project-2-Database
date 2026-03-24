@@ -1,0 +1,40 @@
+public class Row {
+   // attributes
+   private int orderID;
+   private int productID;
+   private double unitPrice;
+   private int quantity;
+   private double discount;
+
+   // value constructor
+   public Row(int orderID, int productID, double unitPrice, int quantity, double discount) {
+       this.orderID = orderID;
+       this.productID = productID;
+       this.unitPrice = unitPrice;
+       this.quantity = quantity;
+       this.discount = discount;
+   }
+
+   // getters
+   public int getOrderID() {
+      return orderID;
+   } public double getUnitPrice() {
+      return unitPrice;
+   } public int getQuantity() {
+      return quantity;
+   } public double getDiscount() {
+      return discount;
+   }
+
+   // setters
+   public void setUnitPrice(double unitPrice) {
+      this.unitPrice = unitPrice;
+   } public void setQuantity(int quantity) {
+      this.quantity = quantity;
+   }
+
+   // toString method
+   public String toString() {
+       return orderID + "   | " + productID + "        | " + unitPrice + "      | " + quantity + "     | " + discount;
+   }
+}
