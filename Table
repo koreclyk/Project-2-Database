@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+
+public class Table {
+   // attributes
+   private String tableName;
+   private ArrayList<Row> rows;
+
+
+   // constructors
+   public Table(String OrderDetails) {
+      this.tableName = OrderDetails;
+      this.rows = new ArrayList<Row>(); 
+   }
+
+
+   // addRow
+   public void addRow(Row row) {
+      this.rows.add(row);
+   }
+
+
+   //getRow
+   public Row getRow(int orderID) {
+      for (int i = 0; i < this.rows.size(); i++) {
+         Row rw = this.rows.get(i);
+         if (rw.getOrderID() == orderID) {
+            return rw;
+        }
+    }
+    return null;
+}
+
+
+   public boolean deleteRow(int orderID) {
+      for (int i = 0; i < this.rows.size(); i++) {
+         Row rw = this.rows.get(i);
+            if (rw.getOrderID() == orderID) {
+               this.rows.remove(i);
+               return true;
+            }
+         }
+      return false;
+   }
+   
+
+   public boolean updatePrice(int orderID, double price) {
+      if (price <= 0) {
+         return false;
+      }
+         Row rw = getRow(orderID);
+        
+         // using setter
+         if (rw != null) {
+            rw.setUnitPrice(price);
+            return true;
+        }
+        return false;
+   }
+
+
+   public boolean updateQuantity(int orderID, int change) {
+      Row rw = getRow(orderID);
+      if (rw != null) {
+         int newQty = rw.getQuantity() + change;
+         if (newQty < 0) {
+            return false;
+         }
+            rw.setQuantity(newQty);
+            return true;
+         }
+         return false;
+   }
+
+
+   public void printTable() {
+      System.out.println("\n" + this.tableName);
+      System.out.println("OrderID | ProductID | UnitPrice | Quantity | Discount");
+      for (Row rw : this.rows) {
+         System.out.println(rw);
+      }
+   }
+}
